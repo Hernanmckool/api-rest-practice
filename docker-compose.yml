@@ -1,0 +1,30 @@
+version: '2'
+services:
+  nginx:
+    image: 10.136.44.42:5000/nginx:latest
+    links:
+      - php
+    ports:
+      - "8082:80"
+  php:
+    image: 10.136.44.42:5000/php:7.4_newrelic
+    environment:
+      NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
+      NEW_RELIC_APPNAME: ${NEW_RELIC_APPNAME}
+      NEW_RELIC_DAEMON_ADDRESS: newrelicdaemon:31339
+    volumes:
+      - .:/var/www
+
+  oracle:
+    image: gvenzl/oracle-xe
+    ports:
+      - "1522:1521"
+    environment:
+      ORACLE_PASSWORD: ${DOCKER_ORACLE_PASSWORD}
+      APP_USER: ${DOCKER_ORACLE_USER}
+      APP_USER_PASSWORD: ${DOCKER_ORACLE_USER_PASSWORD}
+
+networks:
+  default:
+    name: amco-net
+    external: true

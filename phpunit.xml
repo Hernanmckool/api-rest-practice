@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+>
+    <coverage>
+        <report>
+            <clover outputFile="./storage/logs/tests-coverage.xml"/>
+            <text outputFile="php://stdout" showUncoveredFiles="false"/>
+        </report>
+        <include>
+            <directory suffix=".php">app</directory>
+        </include>
+    </coverage>
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory suffix="Test.php">./tests</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory suffix="Test.php">./tests/integration</directory>
+        </testsuite>
+        <testsuite name="unit">
+            <directory suffix="Test.php">./tests/unit</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="APP_ENV" value="testing" force="true"/>
+        <env name="DB_HOST" value="SETMEapi-oracle-1" force="true"/>
+        <env name="DB_PORT" value="1521" force="true"/>
+        <env name="DB_DATABASE" value="XEPDB1" force="true"/>
+        <env name="DB_USERNAME" value="app_esdc81" force="true"/>
+        <env name="DB_PASSWORD" value="123456" force="true"/>
+        <env name="DB_SID_ALIAS" value="XEPDB1" force="true"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+    </php>
+    <logging>
+        <junit outputFile="./storage/logs/tests-unit.xml"/>
+    </logging>
+</phpunit>
