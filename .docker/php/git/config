@@ -1,0 +1,4 @@
+Host git.dlatv.net
+IdentitiesOnly yes
+IdentityFile /root/.ssh/dlagit
+StrictHostKeyChecking no

@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => __env('DB_CONNECTION'),
+    'default' => env('DB_CONNECTION'),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,60 +35,60 @@ return [
 
         'sqlite' => [
             'driver' => 'sqlite',
-            'database' => __env('DB_DATABASE'),
-            'prefix' => __env('DB_PREFIX'),
+            'database' => env('DB_DATABASE'),
+            'prefix' => env('DB_PREFIX'),
         ],
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => __env('DB_HOST'),
-            'port' => __env('DB_PORT'),
-            'database' => __env('DB_DATABASE'),
-            'username' => __env('DB_USERNAME'),
-            'password' => __env('DB_PASSWORD'),
-            'unix_socket' => __env('DB_SOCKET'),
-            'charset' => __env('DB_CHARSET'),
-            'collation' => __env('DB_COLLATION'),
-            'prefix' => __env('DB_PREFIX'),
-            'strict' => __env('DB_STRICT_MODE'),
-            'engine' => __env('DB_ENGINE'),
-            'timezone' => __env('DB_TIMEZONE'),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'unix_socket' => env('DB_SOCKET'),
+            'charset' => env('DB_CHARSET'),
+            'collation' => env('DB_COLLATION'),
+            'prefix' => env('DB_PREFIX'),
+            'strict' => env('DB_STRICT_MODE'),
+            'engine' => env('DB_ENGINE'),
+            'timezone' => env('DB_TIMEZONE'),
         ],
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => __env('DB_HOST'),
-            'port' => __env('DB_PORT'),
-            'database' => __env('DB_DATABASE'),
-            'username' => __env('DB_USERNAME'),
-            'password' => __env('DB_PASSWORD'),
-            'charset' => __env('DB_CHARSET'),
-            'prefix' => __env('DB_PREFIX'),
-            'schema' => __env('DB_SCHEMA'),
-            'sslmode' => __env('DB_SSL_MODE'),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'charset' => env('DB_CHARSET'),
+            'prefix' => env('DB_PREFIX'),
+            'schema' => env('DB_SCHEMA'),
+            'sslmode' => env('DB_SSL_MODE'),
         ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'host' => __env('DB_HOST'),
-            'port' => __env('DB_PORT'),
-            'database' => __env('DB_DATABASE'),
-            'username' => __env('DB_USERNAME'),
-            'password' => __env('DB_PASSWORD'),
-            'charset' => __env('DB_CHARSET'),
-            'prefix' => __env('DB_PREFIX'),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT'),
+            'database' => env('DB_DATABASE'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'charset' => env('DB_CHARSET'),
+            'prefix' => env('DB_PREFIX'),
         ],
 
         'oracle' => [
             'driver' => 'oracle',
-            'host' => __env('DB_HOST'),
-            'port' => __env('DB_PORT'),
-            'database' => __env('DB_DATABASE'),
-            'service_name' => __env('DB_SID_ALIAS'),
-            'username' => __env('DB_USERNAME'),
-            'password' => __env('DB_PASSWORD'),
-            'charset' => __env('DB_CHARSET'),
-            'prefix' => __env('DB_PREFIX'),
+            'host' => env('DB_HOST'),
+            'port' => env('DB_PORT'),
+            'database' => env('DB_DATABASE'),
+            'service_name' => env('DB_SID_ALIAS'),
+            'username' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'charset' => env('DB_CHARSET'),
+            'prefix' => env('DB_PREFIX'),
         ]
     ],
 
@@ -118,22 +118,22 @@ return [
 
     'redis' => [
 
-        'client' => __env('REDIS_CLIENT'),
+        'client' => env('REDIS_CLIENT'),
 
-        'cluster' => __env('REDIS_CLUSTER'),
+        'cluster' => env('REDIS_CLUSTER'),
 
         'cache_rw' => [
-            'host' => __env('REDIS_RW_CACHE_HOST'),
-            'password' => __env('REDIS_RW_CACHE_PASSWORD'),
-            'port' => __env('REDIS_RW_CACHE_PORT'),
-            'database' => __env('REDIS_RW_CACHE_DB'),
+            'host' => env('REDIS_RW_CACHE_HOST'),
+            'password' => env('REDIS_RW_CACHE_PASSWORD'),
+            'port' => env('REDIS_RW_CACHE_PORT'),
+            'database' => env('REDIS_RW_CACHE_DB'),
         ],
 
         'cache_ro' => [
-            'host' => __env('REDIS_RO_CACHE_HOST'),
-            'password' => __env('REDIS_RO_CACHE_PASSWORD'),
-            'port' => __env('REDIS_RO_CACHE_PORT'),
-            'database' => __env('REDIS_RO_CACHE_DB'),
+            'host' => env('REDIS_RO_CACHE_HOST'),
+            'password' => env('REDIS_RO_CACHE_PASSWORD'),
+            'port' => env('REDIS_RO_CACHE_PORT'),
+            'database' => env('REDIS_RO_CACHE_DB'),
         ],
 
     ],

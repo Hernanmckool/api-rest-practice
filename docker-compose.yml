@@ -1,30 +1,47 @@
-version: '2'
+version: '3.8'
 services:
   nginx:
-    image: 10.136.44.42:5000/nginx:latest
+    build: .docker/nginx
+    command: nginx -g "daemon off;"
     links:
       - php
+      - db
     ports:
-      - "8082:80"
+      - "80:80"
   php:
-    image: 10.136.44.42:5000/php:7.4_newrelic
-    environment:
-      NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
-      NEW_RELIC_APPNAME: ${NEW_RELIC_APPNAME}
-      NEW_RELIC_DAEMON_ADDRESS: newrelicdaemon:31339
+    build: .docker/php
+    volumes:
+      - .docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - .docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+    links:
+      - db
+    working_dir: /var/www/public
+    command: php-fpm
     volumes:
       - .:/var/www
-
-  oracle:
-    image: gvenzl/oracle-xe
-    ports:
-      - "1522:1521"
+  db:
+    image: mysql:5.7
+    container_name: db
     environment:
-      ORACLE_PASSWORD: ${DOCKER_ORACLE_PASSWORD}
-      APP_USER: ${DOCKER_ORACLE_USER}
-      APP_USER_PASSWORD: ${DOCKER_ORACLE_USER_PASSWORD}
-
-networks:
-  default:
-    name: amco-net
-    external: true
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    ports:
+      - "3306:3306"
+    volumes:
+        - dbdata:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8080:80
+volumes:
+  dbdata:

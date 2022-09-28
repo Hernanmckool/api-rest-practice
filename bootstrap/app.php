@@ -46,7 +46,7 @@ $app = new Laravel\Lumen\Application(
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    Globalhitss\Common\Exceptions\Handler::class
+    App\Exceptions\Handler::class
 );
 
 $app->singleton(
@@ -54,7 +54,7 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
-date_default_timezone_set(__env('APP_TIMEZONE'));
+date_default_timezone_set(env('APP_TIMEZONE'));
 
 $app->withFacades();
 
@@ -88,23 +88,13 @@ $app->configure('logger');
 |
 */
 
-$app->routeMiddleware([
-    'jwt' => Globalhitss\Common\Middleware\JwtMiddleware::class,
-    'auth' => App\Http\Middleware\AuthMiddleware::class,
-    'region' => Globalhitss\Common\Middleware\RegionMiddleware::class,
-]);
 $app->middleware([
-    'requestId' => Globalhitss\Common\Middleware\RequestIdMiddleware::class,
+    App\Http\Middleware\ExampleMiddleware::class
 ]);
 
-
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
-
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -118,13 +108,8 @@ $app->middleware([
 */
 
 $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
-$app->register(Yajra\Oci8\Oci8ServiceProvider::class);
-$app->register(Illuminate\Redis\RedisServiceProvider::class);
-$app->register(Globalhitss\Common\GlobalhitssCommonServiceProvider::class);
-$app->register(Globalhitss\Pgs\GlobalhitssPgsServiceProvider::class);
-$app->register(Globalhitss\Common\Logger\MonologServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

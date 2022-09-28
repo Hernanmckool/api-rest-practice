@@ -13,6 +13,6 @@
 |
 */
 
-$router->group(['middleware' => ['jwt'], 'prefix' => 'v1'], function () use ($router) {
-    $router->get('/', 'SETMEController@index');
+$router->group(['prefix' => 'v1'], function () use ($router) {
+    $router->get('/user', 'UserController@index');
 });
